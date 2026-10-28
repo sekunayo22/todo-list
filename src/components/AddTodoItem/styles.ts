@@ -25,4 +25,5 @@ export const AddTodoItemInput = styled.input`
   line-height: 100%;
   letter-spacing: -0.25px;
   width: 100%;
+  background-color: transparent;
 `;

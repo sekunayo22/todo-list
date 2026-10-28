@@ -25,5 +25,6 @@ export const TodoItemInput = styled.input<{ isToggled: boolean }>`
   line-height: 100%;
   letter-spacing: -0.25px;
   width: 100%;
+  background-color: transparent;
   text-decoration: ${({ isToggled }) => (isToggled ? "line-through" : "none")};
 `;
