@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
-import { alpha01, gray01, white } from "../../styles/abstracts/variables";
+import { alpha01, dark02, gray01, white } from "../../styles/abstracts/variables";
+import type { ThemeType } from "../../types/component";
 
-export const StyledTodoItem = styled.div`
+export const StyledTodoItem = styled.div<{theme: ThemeType}>`
   display: flex;
   height: 64px;
   padding: 24px;
@@ -12,6 +13,7 @@ export const StyledTodoItem = styled.div`
   gap: 24px;
   box-shadow: 0 35px 50px -15px ${alpha01};
   width: 100%;
+  background-color: ${({theme}) => theme === "light" ? white : dark02}
 `;
 
 export const TodoItemInput = styled.input<{ isToggled: boolean }>`

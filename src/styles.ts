@@ -1,11 +1,14 @@
 import styled from "@emotion/styled";
+import type { ThemeType } from "./types/component";
+import { dark01, white } from "./styles/abstracts/variables";
 
-export const AppShell = styled.div`
+export const AppShell = styled.div<{theme: ThemeType}>`
   display: flex;
   flex-direction: column;
   position: relative;
   width: 100%;
   height: 100vh;
+  background-color: ${({theme}) => theme === "light" ? white : dark01}
 `;
 
 export const AppImage = styled.img`

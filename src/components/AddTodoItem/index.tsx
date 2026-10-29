@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Icon from "../Icon";
 import { StyledAddTodoItem, AddTodoItemInput } from "./styles";
 import type { Todo } from "../../models/todo";
+import { ThemeContext } from "../../context/ThemeContext";
 
 interface AddTodoItemProps {
   handleAddTodo: (title: string, status: Todo["status"]) => void;
 }
 
 export const AddTodoItem = ({ handleAddTodo }: AddTodoItemProps) => {
+  const theme = useContext(ThemeContext);
   const [title, setTitle] = useState("");
   const [isToggled, setIsToggled] = useState(false);
 
@@ -23,7 +25,7 @@ export const AddTodoItem = ({ handleAddTodo }: AddTodoItemProps) => {
   };
 
   return (
-    <StyledAddTodoItem onSubmit={handleSubmit}>
+    <StyledAddTodoItem theme={theme} onSubmit={handleSubmit}>
       <button
         onClick={(event) => {
           event?.stopPropagation();

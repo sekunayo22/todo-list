@@ -15,6 +15,8 @@ import { Global } from "@emotion/react";
 import { normalize } from "./styles/base/reset";
 import { AddTodoItem } from "./components/AddTodoItem";
 import Icon from "./components/Icon";
+import { ThemeContext } from "./context/ThemeContext";
+import type { ThemeType } from "./types/component";
 
 const initialTodos: Todo[] = [
   {
@@ -45,6 +47,7 @@ const initialTodos: Todo[] = [
 ];
 function App() {
   const [todos, setTodos] = useState<Todo[] | []>(initialTodos);
+  const [theme, setTheme] = useState<ThemeType>("light")
 
   const handleTitleChange = (id: Todo["id"], title: string) => {
     setTodos((prevTodos) =>
@@ -71,16 +74,26 @@ function App() {
     ]);
   };
 
+  const handleTheme = () => {
+    setTheme((prevState) => {
+      if(prevState === "light") return "dark"
+      return "light"
+    })
+  }
+
   return (
-    <>
+    <ThemeContext value={theme}>
       <Global styles={normalize} />
-      <AppShell>
+      <AppShell theme={theme}>
         <AppImageContainer>
           <AppImage src={bitmap} />
         </AppImageContainer>
         <AppContent>
           <AppHeader>
             <Icon name="logo" />
+            <button onClick={handleTheme}>
+              <Icon name={theme === "light" ? "moon" : "sun"} />
+            </button>
           </AppHeader>
           <TodoItemListContainer>
             <AddTodoItem handleAddTodo={handleAddTodo} />
@@ -99,7 +112,7 @@ function App() {
           </TodoItemListContainer>
         </AppContent>
       </AppShell>
-    </>
+    </ThemeContext>
   );
 }
 

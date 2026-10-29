@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Icon from "../Icon";
 import { StyledTodoItem, TodoItemInput } from "./styles";
 import type { Todo } from "../../models/todo";
+import { ThemeContext } from "../../context/ThemeContext";
 
 interface TodoItemProps {
   todo: Todo;
@@ -15,9 +16,10 @@ export const TodoItem = ({
   handleTitleChange,
 }: TodoItemProps) => {
   const [isToggled, setIsToggled] = useState(false);
+  const theme = useContext(ThemeContext)
 
   return (
-    <StyledTodoItem>
+    <StyledTodoItem theme={theme}>
       <button
         type="button"
         onClick={(event) => {
